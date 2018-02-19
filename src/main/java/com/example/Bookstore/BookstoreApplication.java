@@ -11,28 +11,27 @@ import org.springframework.context.annotation.Bean;
 import com.example.Bookstore.domain.BookRepository;
 import com.example.Bookstore.domain.Book;
 
-
 @SpringBootApplication
 public class BookstoreApplication {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(BookstoreApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(BookstoreApplication.class, args);
 	}
-	
+
 	@Bean
 	public CommandLineRunner demo(BookRepository repository) {
 		return (args) -> {
 			log.info("Save a couple of books");
 			repository.save(new Book("War and Peace", "Leo Tolstoy", 1867, "9781566190274", 8.48));
-			repository.save(new Book("The last victim of war", "Utkur Hoshimov", 1967, "-", 9.98));
-			
+			repository.save(new Book("The Adventures of Sherlock Holmes", "Arthur Conan Doyle", 1987, "9780895772770", 9.98));
+
 			log.info("fetch all books");
 			for (Book book : repository.findAll()) {
 				log.info(book.toString());
 			}
 		};
 	}
-	
+
 }
