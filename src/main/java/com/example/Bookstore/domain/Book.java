@@ -13,20 +13,28 @@ public class Book {
 	private Long id;
 	private String title;
 	private String author;
-	private int year;
+	private String year;
 	private String isbn;
-	private double price;
+	private String price;
 
 	public Book() {
 	}
 
-	public Book(String title, String author, int year, String isbn, double price) {
-
+	public Book(String title, String author, String year, String isbn, String price) {
+		super();
 		this.title = title;
 		this.author = author;
 		this.year = year;
 		this.isbn = isbn;
 		this.price = price;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -45,11 +53,11 @@ public class Book {
 		this.author = author;
 	}
 
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 
@@ -61,18 +69,19 @@ public class Book {
 		this.isbn = isbn;
 	}
 
-	public double isPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
 	@Override
 	public String toString() {
-		return "Book [title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price=" + price
-				+ "]";
+		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn
+				+ ", price=" + price + "]";
 	}
 
+	
 }
