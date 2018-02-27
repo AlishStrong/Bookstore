@@ -15,39 +15,45 @@ import com.example.Bookstore.domain.CategoryRepository;
 public class BookController {
 	
 	@Autowired
-	private CategoryRepository crepository;
-
-	@Autowired
 	private BookRepository repository;
-
+	
+	@Autowired
+	private CategoryRepository crep;
+	
+	// Show all books
 	@RequestMapping(value = "/booklist")
 	public String bookList(Model model) {
 		model.addAttribute("books", repository.findAll());
 		return "booklist";
 	}
-
+	
+	// Add a book
 	@RequestMapping(value = "/add")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
-		model.addAttribute("category", crepository.findAll());
+		model.addAttribute("category", crep.findAll());
 		return "addbook";
 	}
-
+	
+	// Save book
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveBook(Book book) {
 		repository.save(book);
 		return "redirect:./booklist";
 	}
-
+	
+	// Delete book
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteBook(@PathVariable("id") Long id, Model model) {
 		repository.delete(id);
 		return "redirect:../booklist";
 	}
-
+	
+	// Edit book
 	@RequestMapping(value = "/edit/{id}")
 	public String editBook(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("book", repository.findOne(id));
+		model.addAttribute("category", crep.findAll());
 		return "editbook";
 	}
 }

@@ -23,21 +23,20 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository brepository, CategoryRepository crepository) {
+	public CommandLineRunner bookDemo(BookRepository brep, CategoryRepository crep) {
 		return (args) -> {
-			
 			log.info("Save a couple of categories and books");
-			crepository.save(new Category("Novel"));
-			crepository.save(new Category("Detective"));
-			crepository.save(new Category("Fantasy"));
+			crep.save(new Category("Novel"));
+			crep.save(new Category("Detective"));
+			crep.save(new Category("Fantasy"));
 		
-			brepository.save(new Book("War and Peace", "Leo Tolstoy", "1867", "9781566190274", "8.48", crepository.findByName("Novel").get(0)));
-			brepository.save(new Book("The Adventures of Sherlock Holmes", "Arthur Conan Doyle", "1987", "9780895772770",
-					"9.98", crepository.findByName("Detective").get(0)));
-
+			brep.save(new Book("War and Peace", "Leo Tolstoy", "1867", "9781566190274", "8.48", crep.findByName("Novel").get(0)));
+			brep.save(new Book("The Adventures of Sherlock Holmes", "Arthur Conan Doyle", "1987", "9780895772770",
+					"9.98", crep.findByName("Detective").get(0)));
+			
 			log.info("fetch all books");
-			for (Book book : brepository.findAll()) {
-				log.info(book.toString());
+			for (Book element : brep.findAll()) {
+				log.info(element.toString());
 			}
 		};
 	}
