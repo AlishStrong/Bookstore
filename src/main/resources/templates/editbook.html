@@ -7,10 +7,10 @@
 <body>
 	<h1>Add book</h1>
 	<div>
-	<form th:object="${book}" th:action="@{save}" action="#" method="post">
-	<input type="hidden" th:field="*{id}"></input>
-			<label for="fname">Author's initials</label> <input type="text"
-				id="fname" th:field="*{author}" />
+		<form th:object="${book}" th:action="@{../save}" action="#"
+			method="post">
+			<input type="hidden" th:field="*{id}"></input> <label for="fname">Author's
+				initials</label> <input type="text" id="fname" th:field="*{author}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
 			<label for="title">Title of the book</label> <input type="text"
 				th:field="*{title}" />
@@ -25,32 +25,7 @@
 			<div style="clear: both; display: block; height: 10px;"></div>
 			<input type="submit" value="Save"></input>
 		</form>
-	
-	
-	
-			<!-- 
-			<form th:object="${book}" th:action="@{save}" action="#" method="post">
-			<p th:text="'Change the author (old ' + ${oldbook.author} + ')'"></p>
-			<input type="text" name="author" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			
-			<p th:text="'Change title (old ' + ${oldbook.title} + ')'"></p>
-			<input type="text" name="title" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			
-			<p th:text="'Change year of publication (old ' + ${oldbook.year} + ')'"></p>
-			<input type="text" name="year" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			
-			<p th:text="'Change ISBN(old ' + ${oldbook.isbn} + ')'"></p>
-			<input type="text" name="isbn" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			
-			<input type="submit" value="Save"></input>
-		</form>
-			 -->	
-		
-		
+
 	</div>
 </body>
 </html>

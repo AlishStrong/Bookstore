@@ -46,23 +46,4 @@ public class BookController {
 		model.addAttribute("book", repository.findOne(id));
 		return "editbook";
 	}
-/*
-	@RequestMapping(value = "/saveEdit", method = RequestMethod.POST)
-	public String saveEdit(Book oldbook, Book newbook) {
-		if (!newbook.getAuthor().equals(null)) {
-			oldbook.setAuthor(newbook.getAuthor());
-		}
-		if (!newbook.getTitle().equals(null)) {
-			oldbook.setTitle(newbook.getTitle());
-		}
-		if (!newbook.getYear().equals(null)) {
-			oldbook.setYear(newbook.getYear());
-		}
-		if (!newbook.getIsbn().equals(null)) {
-			oldbook.setPrice(newbook.getPrice());
-		}
-		repository.save(oldbook);
-		return "redirect:./booklist";
-	}
-	*/
 }
