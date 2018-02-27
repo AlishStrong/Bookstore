@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.example.Bookstore.domain.BookRepository;
+import com.example.Bookstore.domain.Category;
+import com.example.Bookstore.domain.CategoryRepository;
 import com.example.Bookstore.domain.Book;
 
 @SpringBootApplication
@@ -21,15 +23,20 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository repository) {
+	public CommandLineRunner demo(BookRepository brepository, CategoryRepository crepository) {
 		return (args) -> {
-			log.info("Save a couple of books");
-			repository.save(new Book("War and Peace", "Leo Tolstoy", "1867", "9781566190274", "8.48"));
-			repository.save(new Book("The Adventures of Sherlock Holmes", "Arthur Conan Doyle", "1987", "9780895772770",
-					"9.98"));
+			
+			log.info("Save a couple of categories and books");
+			crepository.save(new Category("Novel"));
+			crepository.save(new Category("Detective"));
+			crepository.save(new Category("Fantasy"));
+		
+			brepository.save(new Book("War and Peace", "Leo Tolstoy", "1867", "9781566190274", "8.48", crepository.findByName("Novel").get(0)));
+			brepository.save(new Book("The Adventures of Sherlock Holmes", "Arthur Conan Doyle", "1987", "9780895772770",
+					"9.98", crepository.findByName("Detective").get(0)));
 
 			log.info("fetch all books");
-			for (Book book : repository.findAll()) {
+			for (Book book : brepository.findAll()) {
 				log.info(book.toString());
 			}
 		};
